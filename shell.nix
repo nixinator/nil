@@ -1,12 +1,12 @@
-# This imports the nix package collection,# so we can access the `pkgs` and `stdenv` variableswith import <nixpkgs> {};
-# Make a new "derivation" that represents our shell
+#build a developer environment
+
+with import <nixpkgs> {};
+
 stdenv.mkDerivation {
-  name = "my-environment";
+  name = "nil-build-environment";
 
   # The packages in the `buildInputs` list will be added to the PATH in our shell
   buildInputs = [
-    # cowsay is an arbitary package
-    # see https://nixos.org/nixos/packages.html to search for more
-    pkgs.cowsay
+  SDL SDL_ttf SDL_mixer SDL_image SDL2 zlib 
   ];
 }
