@@ -195,7 +195,9 @@ check_config() {
 # Check for a command
 ####
 check_command() {
+        echo "checking if $1 IS THERE"
 	COMM=`which $1`
+	return 0
 	if test -z ${COMM}
 	then
 		echo "Checking for: $1	not found"
@@ -226,8 +228,11 @@ help_comp() {
 # Check for library
 ####
 check_lib() {
+        echo "checking LIB $1 $2 IS THERE"
+	echo "COMPEXE $COMP_EXE" 
 	LIBNAME=$1
 	LIB=`$COMP_EXE -print-file-name=$2 | grep "/"`
+	return 0
 	if test $LIB
 	then
 		echo "Checking for: $LIBNAME		found"
@@ -243,6 +248,7 @@ check_lib() {
 # Check for optional library
 ####
 check_lib_optional() {
+        echo "checking OPTIONAL LIB $1 IS THERE"
 	LIBNAME=$1
 	LIB=`$COMP_EXE -print-file-name=$2 | grep "/"`
 	if test $LIB

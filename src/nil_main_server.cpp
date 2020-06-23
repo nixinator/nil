@@ -87,18 +87,19 @@ class Console_stdout : public Console
 
 #define NILRC_LAST NILRC ".last_good"
 
-void signal_handler(int sig)
+//defined in main
+void signal_handler_server(int sig)
 {
 	raise(SIGSEGV);
 }
 
 //! the "real" nil main function
-int nil_main(int argc,char **argv) {
+int nil_main_server(int argc,char **argv) {
 	// Wire our stdout console to master.
 	Console_stdout stdout_console;
 	master_console.add_slave(stdout_console);
 
-	signal(SIGABRT, signal_handler);
+	signal(SIGABRT, signal_handler_server);
 
 	// The string that appears before the log messages
 	master_console.set_source("NiL");
@@ -163,8 +164,8 @@ extern "C" int SDL_main(int argc, char *argv[]) {
 }
 #else
 //! main function to determine what to do...
-int main(int argc, char **argv) {
+//int main(int argc, char **argv) {
 	// unix, simply start
-	return nil_main(argc, argv);
-}
+//	return nil_main(argc, argv);
+//}
 #endif

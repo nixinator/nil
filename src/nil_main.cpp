@@ -56,6 +56,9 @@
 #include <csignal>
 #include <vector>
 
+
+#include <iostream>
+
 #ifdef _WIN32
 int win32_main(int argc, char *argv[]);
 #define NILRC "nil.cfg"
@@ -153,6 +156,7 @@ int nil_main(int argc,char **argv) {
 
 	if (strcasecmp(mode,"server") == 0) {
 		run_server(config);
+		//std::cout << "THIS WOULD NORMALLY RUN THE SERVER";
 	} else if (strcasecmp(mode,"client") == 0) {
 		run_client(config);
 	} else if (strcasecmp(mode,"bot") == 0) {
@@ -173,6 +177,7 @@ int nil_main(int argc,char **argv) {
 		if (pid == 0)
 			run_client(config);
 		else {
+			//std::cout << "THIS WOULD NORMALLY RUN THE SERVER logmsd()";
 			run_server(config);
 			kill(pid,SIGTERM);
 		}
@@ -191,6 +196,7 @@ int nil_main(int argc,char **argv) {
 		//fork off a server before running the client
 		pid_t pid = fork();
 		if (pid == 0)
+		        //std::cout << "THIS WOULD NORMALLY RUN THE SERVER";
 			run_server(config);
 	 	else {
 			run_client(config);

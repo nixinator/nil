@@ -22,6 +22,11 @@
 #include <set>
 #include <cstdarg>
 
+//JOHN FIX
+
+#include <ostream>
+#include <cstring>
+
 //! Thrown when console to be slaved is already a slave.
 class Already_slave {};
 
